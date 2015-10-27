@@ -19,6 +19,6 @@
     int i;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *mCollectionView;
--(void)getDataFromURL:(NSString*)urlString fromId:(int)count;
+-(void)getDataFromURL:(NSString*)urlString;
 @end
 

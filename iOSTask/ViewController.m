@@ -22,7 +22,7 @@
     i=1;
     
     NSString *urlString = @"http://grapesnberries.getsandbox.com/products?count=10&from=1";
-    [self getDataFromURL:urlString fromId:1];
+    [self getDataFromURL:urlString];
     
     //setup the custom uicollectionview layout
     CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
@@ -41,7 +41,7 @@
 }
 
 //get data from url asynch
--(void)getDataFromURL:(NSString*)urlString fromId:(int)count
+-(void)getDataFromURL:(NSString*)urlString
 {
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -114,7 +114,7 @@
         NSString *preUrlString = @"http://grapesnberries.getsandbox.com/products?count=10&";
         
         NSString *urlString =[NSString stringWithFormat:[preUrlString stringByAppendingString:@"from=%d" ],i];
-        [self getDataFromURL:urlString fromId:0];
+        [self getDataFromURL:urlString];
         [collectionView numberOfItemsInSection:indexPath.section];
     }
     return cell;
