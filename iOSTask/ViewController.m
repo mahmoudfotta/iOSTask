@@ -105,16 +105,8 @@
     product *p = [products objectAtIndex:indexPath.row];
     cell.price.text = [NSString stringWithFormat:@"%@",p.price];
     cell.myImage.image = nil;
-    NSURL * url = [NSURL URLWithString:p.imageUrl];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
-    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        cell.myImage.image = responseObject;
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    }];
-    [requestOperation start];
+
+    [cell.myImage setImageWithURL:[NSURL URLWithString:p.imageUrl]];
     cell.productDes.text = p.ProductDescription;
     if(indexPath.row == products.count-1)
     {

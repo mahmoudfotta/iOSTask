@@ -11,6 +11,7 @@
 #import "CollectionViewCell.h"
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "product.h"
+#import "UIImageView+AFNetworking.h"
 @interface ViewController : UIViewController<UICollectionViewDataSource,CHTCollectionViewDelegateWaterfallLayout>
 {
     NSDictionary *result;
