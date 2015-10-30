@@ -95,7 +95,7 @@
     expectedLabelSize = [self getSizeForText:p.ProductDescription maxWidth:500 font:@"System" fontSize:17.0f];
     [cell.productDes setFrame:CGRectMake(cell.productDes.frame.origin.x, cell.productDes.frame.origin.y, expectedLabelSize.height, expectedLabelSize.width)];
     cell.productDes.text = p.ProductDescription;
-    cell.price.text = [NSString stringWithFormat:@"%@",p.price];
+    cell.price.text = [NSString stringWithFormat:@"$%@",p.price];
     cell.myImage.image = nil;
 
     [cell.myImage setImageWithURL:[NSURL URLWithString:p.imageUrl] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -139,7 +139,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     product *p = [products objectAtIndex:indexPath.row];
-    return CGSizeMake(p.imageWidth.floatValue, p.imageHeight.floatValue+expectedLabelSize.height);
+    return CGSizeMake(p.imageWidth.floatValue, (p.imageHeight.floatValue+expectedLabelSize.height));
 }
 
 @end
