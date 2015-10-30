@@ -13,11 +13,11 @@
 @end
 
 @implementation ViewController
-@synthesize mCollectionView;
+@synthesize mCollectionView, indicator, indicator1;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [indicator stopAnimating];
     products = [[NSMutableArray alloc]init];
     i=1;
     
@@ -34,6 +34,18 @@
     layout.minimumInteritemSpacing = 30;
     mCollectionView.collectionViewLayout = layout;
     
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [indicator stopAnimating];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    indicator.center = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds));
+    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    [self.view addSubview:indicator];
+    [indicator startAnimating];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -106,7 +118,8 @@
     cell.price.text = [NSString stringWithFormat:@"%@",p.price];
     cell.myImage.image = nil;
 
-    [cell.myImage setImageWithURL:[NSURL URLWithString:p.imageUrl]];
+    [cell.myImage setImageWithURL:[NSURL URLWithString:p.imageUrl] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
     cell.productDes.text = p.ProductDescription;
     if(indexPath.row == products.count-1)
     {

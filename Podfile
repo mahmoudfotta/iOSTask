@@ -5,6 +5,7 @@
 
 target 'iOSTask' do
 pod 'AFNetworking', '~> 2.0'
+pod 'AFNetworking+ImageActivityIndicator', '~> 1.0'
 end
 
 target 'iOSTaskTests' do

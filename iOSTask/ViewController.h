@@ -11,7 +11,7 @@
 #import "CollectionViewCell.h"
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "product.h"
-#import "UIImageView+AFNetworking.h"
+#import "AFNetworking+ImageActivityIndicator.h"
 @interface ViewController : UIViewController<UICollectionViewDataSource,CHTCollectionViewDelegateWaterfallLayout>
 {
     NSDictionary *result;
@@ -19,6 +19,7 @@
     int i;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *mCollectionView;
+@property UIActivityIndicatorView *indicator, *indicator1;
 -(void)getDataFromURL:(NSString*)urlString;
 @end
 

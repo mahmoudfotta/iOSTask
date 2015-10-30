@@ -6,6 +6,8 @@ PODS:
     - AFNetworking/Security (= 2.6.1)
     - AFNetworking/Serialization (= 2.6.1)
     - AFNetworking/UIKit (= 2.6.1)
+  - AFNetworking+ImageActivityIndicator (1.0.2):
+    - AFNetworking (~> 2.0)
   - AFNetworking/NSURLConnection (2.6.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -23,8 +25,10 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - AFNetworking+ImageActivityIndicator (~> 1.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
+  AFNetworking+ImageActivityIndicator: 2d1a65e082909f6c5f0e8af0ae810e1118e5f21c
 
 COCOAPODS: 0.39.0
