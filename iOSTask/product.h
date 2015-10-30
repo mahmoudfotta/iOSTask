@@ -10,9 +10,7 @@
 
 @interface product : NSObject
 {
-    NSNumber *imageHeight, *imageWidth;
-    NSString *productDescription, *imageUrl;
-    NSNumber * price;
+    
 }
 -(void)setPrice:(NSNumber *)price;
 -(NSNumber *)price;

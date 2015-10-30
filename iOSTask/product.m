@@ -7,8 +7,15 @@
 //
 
 #import "product.h"
-
+@interface product()
+{
+    NSNumber *imageHeight, *imageWidth;
+    NSString *productDescription, *imageUrl;
+    NSNumber * price;
+}
+@end
 @implementation product
+
 -(void)setPrice:(NSNumber *)pric
 {
     price = pric;

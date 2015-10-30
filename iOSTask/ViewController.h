@@ -13,13 +13,11 @@
 #import "product.h"
 #import "AFNetworking+ImageActivityIndicator.h"
 @interface ViewController : UIViewController<UICollectionViewDataSource,CHTCollectionViewDelegateWaterfallLayout>
-{
-    NSDictionary *result;
-    NSMutableArray *products;
-    int i;
-}
+@property NSDictionary *result;
+@property int i;
+@property NSMutableArray *products;
 @property (weak, nonatomic) IBOutlet UICollectionView *mCollectionView;
-@property UIActivityIndicatorView *indicator, *indicator1;
+@property UIActivityIndicatorView *indicator;
 -(void)getDataFromURL:(NSString*)urlString;
 @end
 

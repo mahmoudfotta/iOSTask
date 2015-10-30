@@ -13,7 +13,7 @@
 @end
 
 @implementation ViewController
-@synthesize mCollectionView, indicator, indicator1;
+@synthesize mCollectionView, indicator, result ,products ,i;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
