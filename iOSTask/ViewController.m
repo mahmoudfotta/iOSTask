@@ -13,7 +13,7 @@
 @end
 
 @implementation ViewController
-@synthesize mCollectionView, indicator, result ,products ,i;
+@synthesize mCollectionView, indicator, result ,products, i, expectedLabelSize;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -115,12 +115,14 @@
 {
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     product *p = [products objectAtIndex:indexPath.row];
+    expectedLabelSize = [self getSizeForText:p.ProductDescription maxWidth:500 font:@"System" fontSize:17.0f];
+    [cell.productDes setFrame:CGRectMake(cell.productDes.frame.origin.x, cell.productDes.frame.origin.y, expectedLabelSize.height, expectedLabelSize.width)];
+    cell.productDes.text = p.ProductDescription;
     cell.price.text = [NSString stringWithFormat:@"%@",p.price];
     cell.myImage.image = nil;
 
     [cell.myImage setImageWithURL:[NSURL URLWithString:p.imageUrl] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
-    cell.productDes.text = p.ProductDescription;
     if(indexPath.row == products.count-1)
     {
         i+=10;
@@ -132,13 +134,28 @@
     }
     return cell;
 }
-
+- (CGSize)getSizeForText:(NSString *)text maxWidth:(CGFloat)width font:(NSString *)fontName fontSize:(float)fontSize {
+    CGSize constraintSize;
+    constraintSize.height = MAXFLOAT;
+    constraintSize.width = width;
+    NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          [UIFont fontWithName:fontName size:fontSize], NSFontAttributeName,
+                                          nil];
+    
+    CGRect frame = [text boundingRectWithSize:constraintSize
+                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                   attributes:attributesDictionary
+                                      context:nil];
+    
+    CGSize stringSize = frame.size;
+    return stringSize;
+}
 
 #pragma mark - CHTCollectionViewDelegateWaterfallLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     product *p = [products objectAtIndex:indexPath.row];
-    return CGSizeMake(p.imageWidth.floatValue, p.imageHeight.floatValue);
+    return CGSizeMake(p.imageWidth.floatValue, p.imageHeight.floatValue+expectedLabelSize.height);
 }
 
 @end

@@ -17,7 +17,9 @@
 @property int i;
 @property NSMutableArray *products;
 @property (weak, nonatomic) IBOutlet UICollectionView *mCollectionView;
+@property CGSize expectedLabelSize;
 @property UIActivityIndicatorView *indicator;
 -(void)getDataFromURL:(NSString*)urlString;
+- (CGSize)getSizeForText:(NSString *)text maxWidth:(CGFloat)width font:(NSString *)fontName fontSize:(float)fontSize;
 @end
 
