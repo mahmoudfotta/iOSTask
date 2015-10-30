@@ -13,16 +13,29 @@
 @end
 
 @implementation ViewController
-@synthesize mCollectionView, indicator, result ,products, i, expectedLabelSize;
+@synthesize mCollectionView, indicator, result ,products, i, expectedLabelSize, net;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [indicator stopAnimating];
     products = [[NSMutableArray alloc]init];
     i=1;
-    
     NSString *urlString = @"http://grapesnberries.getsandbox.com/products?count=10&from=1";
-    [self getDataFromURL:urlString];
+    net = [[network alloc]init];
+    [net getDataFromURL:urlString block:^(NSDictionary *resultD, NSError *error) {
+        if (!error) {
+            result = resultD;
+            [mCollectionView reloadData];
+            [indicator stopAnimating];
+        }
+        else
+        {
+            UIAlertController *alert=   [UIAlertController alertControllerWithTitle:@"Error" message:@"Error loading data" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:nil];
+            [alert addAction:okButton];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }];
     
     //setup the custom uicollectionview layout
     CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
@@ -35,10 +48,7 @@
     mCollectionView.collectionViewLayout = layout;
     
 }
--(void)viewDidAppear:(BOOL)animated
-{
-    [indicator stopAnimating];
-}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -50,29 +60,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-//get data from url asynch
--(void)getDataFromURL:(NSString*)urlString
-{
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        result = (NSDictionary *)responseObject;
-        [self.mCollectionView reloadData];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        UIAlertController *alert=   [UIAlertController alertControllerWithTitle:@"Error" message:@"Error loading data" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:nil];
-        [alert addAction:okButton];
-        [self presentViewController:alert animated:YES completion:nil];
-        
-    }];
-    [operation start];
-    
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -95,18 +82,8 @@
     }
     else
     {
-        for(NSDictionary *dic in result)
-        {
-            //store products data
-            product *prod = [[product alloc]init];
-            NSDictionary *imURl = dic[@"image"];
-            [prod setPrice:dic[@"price"]];
-            [prod setProductDescription:dic[@"productDescription"]];
-            [prod setImageHeight:imURl[@"height"]];
-            [prod setImageWidth:imURl[@"width"]];
-            [prod setImageUrl:imURl[@"url"]];
-            [products addObject:prod];
-        }
+        NSArray *arr = [[net parseJson:result] copy];
+        [products addObjectsFromArray:arr];
         return [products count];
     }
 }
@@ -129,11 +106,18 @@
         NSString *preUrlString = @"http://grapesnberries.getsandbox.com/products?count=10&";
         
         NSString *urlString =[NSString stringWithFormat:[preUrlString stringByAppendingString:@"from=%d" ],i];
-        [self getDataFromURL:urlString];
+        [net getDataFromURL:urlString block:^(NSDictionary *resultD, NSError *error) {
+            if (!error) {
+                result = resultD;
+                [mCollectionView reloadData];
+            }
+        }];
         [collectionView numberOfItemsInSection:indexPath.section];
     }
     return cell;
 }
+
+// get the size of atext
 - (CGSize)getSizeForText:(NSString *)text maxWidth:(CGFloat)width font:(NSString *)fontName fontSize:(float)fontSize {
     CGSize constraintSize;
     constraintSize.height = MAXFLOAT;

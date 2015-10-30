@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E6DED3E1BE3321700C986F7 /* network.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6DED3D1BE3321700C986F7 /* network.m */; settings = {ASSET_TAGS = (); }; };
 		1EED572F1BDFC4A300932B6E /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EED572E1BDFC4A300932B6E /* CHTCollectionViewWaterfallLayout.m */; settings = {ASSET_TAGS = (); }; };
 		1EED57321BDFFF7300932B6E /* product.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EED57311BDFFF7300932B6E /* product.m */; settings = {ASSET_TAGS = (); }; };
 		1EF3DB991BDD5AB900714C5A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EF3DB981BDD5AB900714C5A /* main.m */; };
@@ -40,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		17818EF6A594F36C193402AB /* Pods-iOSTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTask.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSTask/Pods-iOSTask.debug.xcconfig"; sourceTree = "<group>"; };
+		1E6DED3C1BE3321700C986F7 /* network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = network.h; sourceTree = "<group>"; };
+		1E6DED3D1BE3321700C986F7 /* network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = network.m; sourceTree = "<group>"; };
 		1EED572D1BDFC4A300932B6E /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
 		1EED572E1BDFC4A300932B6E /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		1EED57301BDFFF7300932B6E /* product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = product.h; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 				1EED572E1BDFC4A300932B6E /* CHTCollectionViewWaterfallLayout.m */,
 				1EED57301BDFFF7300932B6E /* product.h */,
 				1EED57311BDFFF7300932B6E /* product.m */,
+				1E6DED3C1BE3321700C986F7 /* network.h */,
+				1E6DED3D1BE3321700C986F7 /* network.m */,
 			);
 			path = iOSTask;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 			files = (
 				1EF3DB9F1BDD5AB900714C5A /* ViewController.m in Sources */,
 				1EF3DB9C1BDD5AB900714C5A /* AppDelegate.m in Sources */,
+				1E6DED3E1BE3321700C986F7 /* network.m in Sources */,
 				1EF3DC0B1BDD702F00714C5A /* CollectionViewCell.m in Sources */,
 				1EED57321BDFFF7300932B6E /* product.m in Sources */,
 				1EED572F1BDFC4A300932B6E /* CHTCollectionViewWaterfallLayout.m in Sources */,
