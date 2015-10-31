@@ -6,6 +6,7 @@
 target 'iOSTask' do
 pod 'AFNetworking', '~> 2.0'
 pod 'AFNetworking+ImageActivityIndicator', '~> 1.0'
+pod 'CHTCollectionViewWaterfallLayout'
 end
 
 target 'iOSTaskTests' do

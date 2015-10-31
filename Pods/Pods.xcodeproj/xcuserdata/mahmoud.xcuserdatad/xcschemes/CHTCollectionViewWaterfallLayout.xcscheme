@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '4313FC2940A7A87DEA50F8B5'
-               BlueprintName = 'Pods-iOSTask'
+               BlueprintIdentifier = 'E6F1EAB6630112E5F2592184'
+               BlueprintName = 'CHTCollectionViewWaterfallLayout'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-iOSTask.a'>
+               BuildableName = 'libCHTCollectionViewWaterfallLayout.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
